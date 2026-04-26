@@ -144,33 +144,36 @@
                 <button onclick="toggleModal()" class="text-left text-xs uppercase tracking-widest text-zinc-500 hover:text-white">[ ESCAPE_TERMINAL ]</button>
             </div>
             <div class="w-full md:w-1/2 p-6 md:p-10 overflow-y-auto">
-                <form class="space-y-6 md:space-y-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col gap-2">
-                            <label class="text-[10px] uppercase font-bold text-zinc-500">_Identity</label>
-                            <input type="text" placeholder="Full Name">
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <label class="text-[10px] uppercase font-bold text-zinc-500">_Relay</label>
-                            <input type="email" placeholder="Email Address">
-                        </div>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <label class="text-[10px] uppercase font-bold text-zinc-500">_Module</label>
-                        <select>
-                            <option>System Architecture</option>
-                            <option>Neural Interface</option>
-                            <option>Core Development</option>
-                        </select>
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <label class="text-[10px] uppercase font-bold text-zinc-500">_Objective</label>
-                        <textarea rows="4" placeholder="Briefly state your requirements..."></textarea>
-                    </div>
-                    <button class="w-full py-5 border border-white text-white uppercase font-bold text-xs tracking-[0.5em] hover:bg-white hover:text-black transition-all">
-                        Execute Transmission
-                    </button>
-                </form>
+                <form action="https://formspree.io/f/xbdqbbak" method="POST" class="space-y-6 md:space-y-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col gap-2">
+            <label class="text-[10px] uppercase font-bold text-zinc-500">_Identity</label>
+            <input type="text" name="name" placeholder="Full Name" required>
+        </div>
+        <div class="flex flex-col gap-2">
+            <label class="text-[10px] uppercase font-bold text-zinc-500">_Relay</label>
+            <input type="email" name="email" placeholder="Email Address" required>
+        </div>
+    </div>
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] uppercase font-bold text-zinc-500">_Module</label>
+        <select name="service">
+            <option>System Architecture</option>
+            <option>Neural Interface</option>
+            <option>Core Development</option>
+        </select>
+    </div>
+    <div class="flex flex-col gap-2">
+        <label class="text-[10px] uppercase font-bold text-zinc-500">_Objective</label>
+        <textarea name="message" rows="4" placeholder="Briefly state your requirements..." required></textarea>
+    </div>
+    
+    <input type="hidden" name="_next" value="https://axioft.dev/thanks">
+
+    <button type="submit" class="w-full py-5 border border-white text-white uppercase font-bold text-xs tracking-[0.5em] hover:bg-white hover:text-black transition-all">
+        Execute Transmission
+    </button>
+</form>
             </div>
         </div>
     </div>
