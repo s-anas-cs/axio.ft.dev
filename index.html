@@ -3,383 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AXIOFT // PROTOCOL 2026</title>
+    <title>AXIOFT.DEV | Elite Software Engineering Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syne:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;600;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; }
-        :root { --primary: #ffffff; --bg: #000000; --grid: rgba(255, 255, 255, 0.05); }
-        body { 
-            font-family: 'Space Grotesk', sans-serif; 
-            background-color: var(--bg); 
-            color: var(--primary);
-            background-image: 
-                linear-gradient(var(--grid) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-            background-size: 50px 50px;
+        :root {
+            --accent: #6366f1;
         }
-        .font-syne { font-family: 'Syne', sans-serif; }
-        .scanner {
-            position: fixed; top: 0; left: 0; width: 100%; height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: 100; pointer-events: none;
-            animation: scan 8s linear infinite;
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
         }
-        @keyframes scan { 0% { top: 0; } 100% { top: 100vh; } }
-        .brutalist-border { border: 1px solid rgba(255,255,255,0.15); position: relative; }
-        .brutalist-border::before { content: '+'; position: absolute; top: -10px; left: -6px; color: #444; font-size: 14px; }
-        .brutalist-border::after { content: '+'; position: absolute; bottom: -10px; right: -6px; color: #444; font-size: 14px; }
-        #enquireModal { display: none; opacity: 0; clip-path: inset(0 0 100% 0); transition: all 0.6s cubic-bezier(0.85, 0, 0.15, 1); }
-        #enquireModal.active { display: flex; opacity: 1; clip-path: inset(0 0 0 0); }
-        .glitch-hover:hover { text-shadow: 2px 0 #ff0000, -2px 0 #00ff00; }
-        input, select, textarea {
-            background: transparent !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
-            padding: 1rem !important;
-            color: white !important;
-            border-radius: 0 !important;
-        }
-        input:focus { border-color: #fff !important; outline: none; }
-        .vertical-text { writing-mode: vertical-rl; text-orientation: mixed; }
-        .animate-spin-slow { animation: spin 10s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .serif { font-family: 'Instrument Serif', serif; }
 
-        /* Service Card Base */
-        .service-card {
-            position: relative;
-            overflow: hidden;
-            background: #000;
-            transition: background 0.4s ease;
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
         }
 
-        .service-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 1px solid transparent;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent) border-box;
-            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            background-size: 200% 100%;
-            animation: borderMove 4s linear infinite;
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        @keyframes borderMove {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .service-inner {
-            position: relative;
-            z-index: 30;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .service-card:hover { background: #fff; }
-
-        .service-card:hover h3, 
-        .service-card:hover span { color: #000 !important; }
-
-        .service-details-panel {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 60%;
-            padding: 1.5rem;
-            background: #fff;
-            color: #000;
-            transform: translateY(100%);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 20;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .service-card:hover .service-details-panel { transform: translateY(0); }
-
-        .price-tag {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 2rem;
-            letter-spacing: -1px;
-            color: #000;
+        .bento-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @media (min-width: 768px) {
-            .price-tag { font-size: 2.5rem; }
-            .service-details-panel { padding: 2rem; }
+            .bento-card:hover {
+                background: rgba(255, 255, 255, 0.06);
+                border-color: rgba(255, 255, 255, 0.2);
+                transform: translateY(-8px) scale(1.01);
+            }
         }
+
+        .text-gradient {
+            background: linear-gradient(to right, #fff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
     </style>
 </head>
-<body class="overflow-x-hidden">
-    <div class="scanner"></div>
+<body>
+    <div class="mesh-bg"></div>
 
-    <nav class="fixed top-0 w-full z-[100] p-4 md:p-6 flex justify-between items-start bg-black/50 backdrop-blur-md border-b border-white/5">
-        <div class="flex flex-col">
-            <span class="font-syne font-800 text-xl md:text-2xl tracking-tighter leading-none glitch-hover cursor-pointer">AXIOFT.</span>
-            <span class="text-[8px] md:text-[9px] tracking-[0.4em] text-zinc-500 mt-1 uppercase font-bold">Terminal v.2026</span>
-        </div>
-        <div class="flex items-center gap-4 md:gap-12">
-            <div class="hidden lg:flex flex-col items-end gap-1 text-[10px] font-bold tracking-widest uppercase text-zinc-400">
-                <a href="#services" class="hover:text-white transition-colors">01 / Services</a>
-                <a href="#projects" class="hover:text-white transition-colors">02 / Projects</a>
-                <a href="#team" class="hover:text-white transition-colors">03 / Minds</a>
+    <nav class="fixed top-0 w-full z-[100] p-4 md:p-6">
+        <div class="max-w-6xl mx-auto glass rounded-2xl px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 md:gap-3">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-indigo-600 rounded-lg md:rounded-xl flex items-center justify-center rotate-3 shadow-[0_0_20px_rgba(99,102,241,0.5)]">
+                    <div class="w-3 h-3 md:w-4 md:h-4 border-2 border-white"></div>
+                </div>
+                <span class="text-xl md:text-2xl font-extrabold tracking-tighter uppercase italic">Axioft<span class="text-indigo-500">.</span></span>
             </div>
-            <button onclick="toggleModal()" class="brutalist-border px-4 py-2 md:px-8 md:py-3 bg-white text-black font-bold uppercase text-[9px] md:text-[11px] tracking-widest hover:invert transition-all">
-                Access Protocol
-            </button>
+
+            <a href="mailto:axioft@gmail.com?subject=Project%20Inquiry%20-%20Axioft%20Studio" class="inline-flex items-center justify-center bg-white text-black px-4 md:px-8 py-2.5 md:py-3 rounded-xl text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:bg-indigo-500 hover:text-white transition-all active:scale-95">
+                Let's Connect
+            </a>
         </div>
     </nav>
 
-    <div id="enquireModal" class="fixed inset-0 z-[200] items-center justify-center bg-black p-4 md:p-12">
-        <div class="w-full h-full brutalist-border bg-black flex flex-col md:flex-row overflow-hidden">
-            <div class="w-full md:w-1/2 p-6 md:p-10 border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-between">
-                <div>
-                    <span class="text-[10px] uppercase tracking-[0.8em] text-zinc-600 mb-8 block">Inquiry Phase</span>
-                    <h2 class="font-syne text-4xl md:text-8xl font-800 tracking-tighter mb-6">INITIATE<br>LINK.</h2>
-                </div>
-                <button onclick="toggleModal()" class="text-left text-xs uppercase tracking-widest text-zinc-500 hover:text-white">[ ESCAPE_TERMINAL ]</button>
-            </div>
-            <div class="w-full md:w-1/2 p-6 md:p-10 overflow-y-auto">
-                <form action="https://formspree.io/f/xbdqbbak" method="POST" class="space-y-6 md:space-y-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="flex flex-col gap-2">
-            <label class="text-[10px] uppercase font-bold text-zinc-500">_Identity</label>
-            <input type="text" name="name" placeholder="Full Name" required>
-        </div>
-        <div class="flex flex-col gap-2">
-            <label class="text-[10px] uppercase font-bold text-zinc-500">_Relay</label>
-            <input type="email" name="email" placeholder="Email Address" required>
-        </div>
-    </div>
-    <div class="flex flex-col gap-2">
-        <label class="text-[10px] uppercase font-bold text-zinc-500">_Module</label>
-        <select name="service">
-            <option>System Architecture</option>
-            <option>Neural Interface</option>
-            <option>Core Development</option>
-        </select>
-    </div>
-    <div class="flex flex-col gap-2">
-        <label class="text-[10px] uppercase font-bold text-zinc-500">_Objective</label>
-        <textarea name="message" rows="4" placeholder="Briefly state your requirements..." required></textarea>
-    </div>
-    
-    <input type="hidden" name="_next" value="https://axioft.dev/thanks">
-
-    <button type="submit" class="w-full py-5 border border-white text-white uppercase font-bold text-xs tracking-[0.5em] hover:bg-white hover:text-black transition-all">
-        Execute Transmission
-    </button>
-</form>
-            </div>
-        </div>
-    </div>
-
-   <main class="min-h-[80vh] md:min-h-screen flex flex-col justify-start md:justify-center px-6 md:px-12 pt-28 md:pt-32">
-    <div class="max-w-screen-2xl mx-auto w-full relative">
-        <div class="absolute -left-12 top-0 vertical-text text-[10px] uppercase tracking-[1em] text-zinc-700 hidden lg:block">
-            High Fidelity Systems // 2026-2027
-        </div>
-        
-        <h1 class="font-syne font-800 text-5xl sm:text-7xl md:text-[150px] lg:text-[240px] leading-[0.85] tracking-tighter mb-8 md:mb-12">
-            LIMITLESS<br><span class="text-zinc-800">ENGINEERING.</span>
-        </h1>
-
-        <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 md:gap-12">
-            <div class="max-w-lg brutalist-border p-6 md:p-8 backdrop-blur-sm bg-black/40">
-                <p class="text-lg md:text-2xl font-light leading-snug">
-                    We don't build websites. We engineer <span class="bg-white text-black px-2">digital physics</span> for the world's most ambitious entities.
-                </p>
+    <section class="relative pt-32 md:pt-64 pb-16 md:pb-32 px-4 md:px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/5 mb-8 md:mb-12 floating">
+                <span class="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></span>
+                <span class="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-300">Engineering for the elite</span>
             </div>
             
-            <div class="flex items-center gap-6 pb-10 md:pb-0"> <div class="text-right">
-                    <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Protocol Status</span>
-                    <span class="text-xs md:text-sm font-mono uppercase">System_Active_2026</span>
+            <h1 class="text-5xl sm:text-6xl md:text-[120px] font-medium tracking-tighter leading-none mb-8 md:mb-12 text-gradient">
+                We Build <br class="hidden sm:block"/>
+                <span class="serif italic text-indigo-500">Digital Empire.</span>
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-zinc-400 text-base md:text-xl leading-relaxed mb-10 md:mb-16 font-light px-2">
+                A boutique development studio specializing in high-fidelity software architecture, bespoke AI integrations, and uncompromising digital experiences.
+            </p>
+        </div>
+    </section>
+
+    <section id="services" class="pb-20 md:pb-32 px-4 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 md:mb-16 text-center md:text-left">
+                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-400 mb-3 animate-pulse">Core Expertise</p>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tighter text-gradient">Our Capabilities<span class="text-indigo-500">.</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 auto-rows-fr">
+                <div class="group md:col-span-2 md:row-span-2 bento-card glass p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] flex flex-col justify-end min-h-[350px] md:min-h-[400px] relative overflow-hidden">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-all duration-700"></div>
+                    <div class="w-14 h-14 bg-indigo-500/10 border border-indigo-500/30 rounded-2xl flex items-center justify-center mb-6 w-fit shadow-[0_0_15px_rgba(99,102,241,0.1)] group-hover:border-indigo-500 group-hover:bg-indigo-500/20 transition-all duration-500">
+                        <svg class="w-7 h-7 text-indigo-400 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <span class="text-indigo-500 text-[10px] font-mono font-bold tracking-widest mb-2 block">01 / TAILORED ARCHITECTURE</span>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight group-hover:text-indigo-300 transition-colors duration-300">Custom Web Development</h3>
+                    <p class="text-zinc-500 text-sm md:text-base leading-relaxed">We build tailored websites and web applications designed to meet your unique business requirements, ensuring scalability, security, and high performance.</p>
                 </div>
-                <div class="w-10 h-10 md:w-12 md:h-12 brutalist-border flex items-center justify-center animate-spin-slow">
-                    <div class="w-2 h-2 bg-white"></div>
+
+                <div class="group md:col-span-2 bento-card glass p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] flex flex-col justify-center min-h-[180px] relative overflow-hidden">
+                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-white/5 rounded-full blur-xl group-hover:bg-indigo-500/10 transition-all duration-700"></div>
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-zinc-600 text-xs font-mono font-bold group-hover:text-indigo-400 transition-colors">02</span>
+                        <div class="text-zinc-500 group-hover:text-indigo-400 group-hover:translate-x-[-4px] transition-all duration-500">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2 tracking-tight">Responsive UI/UX Design</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed">We create modern, user-centric designs that deliver seamless experiences across desktops, tablets, and mobile devices.</p>
+                </div>
+
+                <div class="group bento-card glass p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] flex flex-col justify-center min-h-[180px] relative overflow-hidden">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-zinc-600 text-xs font-mono font-bold group-hover:text-indigo-400 transition-colors">03</span>
+                        <div class="text-zinc-500 group-hover:text-indigo-400 group-hover:-translate-y-1 transition-all duration-500">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2 tracking-tight">E-Commerce Solutions</h3>
+                    <p class="text-zinc-500 text-sm leading-relaxed">We develop powerful platforms with secure payments and optimized journeys to drive sales.</p>
+                </div>
+
+                <div class="group bento-card glass p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] bg-indigo-600/5 border-indigo-500/20 hover:border-indigo-500/50 flex flex-col justify-center min-h-[180px] relative overflow-hidden transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="flex items-start justify-between mb-4 relative z-10">
+                        <span class="text-indigo-400 text-xs font-mono font-bold">04 / RETAINER</span>
+                        <div class="text-indigo-400 group-hover:rotate-90 transition-transform duration-700 ease-out">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2 tracking-tight text-indigo-400 relative z-10">Maintenance & Support</h3>
+                    <p class="text-zinc-400 group-hover:text-zinc-300 text-sm leading-relaxed relative z-10 transition-colors">We provide ongoing updates, performance optimization, and technical support to keep you running smoothly.</p>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </section>
 
-   <section id="services" class="py-12 md:py-32 px-6 md:px-12 border-t border-white/10 overflow-hidden">
-    <div class="max-w-screen-2xl mx-auto">
-        <div class="mb-8 md:mb-16">
-            <span class="text-[10px] uppercase tracking-[0.8em] text-zinc-600 mb-4 block">System_Capabilities</span>
-            <h2 class="font-syne text-4xl md:text-7xl font-800 tracking-tighter uppercase leading-none">TECH_STACK</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-l border-t border-white/10">
-            <div class="service-card min-h-[350px] md:min-h-[500px] border-r border-b border-white/10 p-6 md:p-12 group">
-                <div class="service-inner flex flex-col justify-start h-full">
-                    <span class="font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest transition-colors duration-300">Mod_01 // Architecture</span>
-                    <h3 class="font-syne text-4xl md:text-6xl font-800 tracking-tighter uppercase leading-[0.9] mt-6 transition-colors duration-300">VISUAL<br>ARCHITECT</h3>
+    <footer class="pt-6 pb-12 px-4 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="glass rounded-[2.5rem] md:rounded-[4rem] p-8 sm:p-12 md:p-24 text-center mb-16 md:mb-20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-indigo-600/5 -z-10"></div>
+                
+                <div id="cta-content" class="transition-all duration-500 transform scale-100 opacity-100">
+                    <h2 class="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-8 md:mb-12 leading-tight">
+                        Let's build the <br/>
+                        <span class="serif italic font-light text-indigo-500">impossible.</span>
+                    </h2>
+                    <button onclick="toggleForm()" class="bg-white text-black px-8 md:px-12 py-4 md:py-6 rounded-xl md:rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest hover:scale-105 md:hover:scale-110 transition-transform active:scale-95 shadow-2xl">
+                        Initiate Contact
+                    </button>
                 </div>
-                <div class="service-details-panel">
-                    <div class="mb-6 border-l-2 border-black pl-4">
-                        <h4 class="text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-1 opacity-40">Description</h4>
-                        <p class="text-xs md:text-sm font-bold uppercase leading-tight">Sophisticated, pixel-perfect UI design featuring elite aesthetics and high-contrast brutalist layouts.
-                            Crafting brutalist-inspired interfaces engineered for premium brand impact and visual excellence.
-                        </p>
+
+                <div id="contact-form" class="hidden opacity-0 max-w-xl mx-auto text-left transition-all duration-700 ease-out">
+                    <div class="flex justify-between items-center mb-8 border-b border-zinc-800 pb-4">
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-400 mb-1">Brief Us</p>
+                            <h3 class="text-2xl font-bold tracking-tight">Project Inquiry</h3>
+                        </div>
+                        <button onclick="toggleForm()" class="text-zinc-500 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest p-2">
+                            ✕ Close
+                        </button>
                     </div>
-                    <div>
-                        <h4 class="text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-1 opacity-40">Investment</h4>
-                        <div class="price-tag">$125+</div>
-                    </div>
+
+                    <form action="https://formspree.io/f/xbdqbbak" method="POST" class="space-y-6">
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">Your Name</label>
+                            <input type="text" name="name" required placeholder="John Doe" class="w-full bg-white/5 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:bg-white/[0.08] transition-all" />
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">Email Address</label>
+                            <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-white/5 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:bg-white/[0.08] transition-all" />
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">Project Type</label>
+                            <div class="relative">
+                                <select name="project_type" required class="w-full bg-white/5 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-indigo-500 focus:bg-white/[0.08] appearance-none transition-all cursor-pointer">
+                                    <option value="" disabled selected class="bg-zinc-950 text-zinc-600">Select a capability...</option>
+                                    <option value="custom-web" class="bg-zinc-950 text-white">Custom Web Development</option>
+                                    <option value="ui-ux" class="bg-zinc-950 text-white">Responsive UI/UX Design</option>
+                                    <option value="ecommerce" class="bg-zinc-950 text-white">E-Commerce Solutions</option>
+                                    <option value="maintenance" class="bg-zinc-950 text-white">Website Maintenance & Support</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-zinc-500">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-6 rounded-xl text-xs uppercase tracking-widest transition-all active:scale-[0.98] shadow-lg shadow-indigo-600/20">
+                                Send Transmission
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <div class="service-card min-h-[350px] md:min-h-[500px] border-r border-b border-white/10 p-6 md:p-12 group">
-                <div class="service-inner flex flex-col justify-start h-full">
-                    <span class="font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest transition-colors duration-300">Mod_02 // Experience</span>
-                    <h3 class="font-syne text-4xl md:text-6xl font-800 tracking-tighter uppercase leading-[0.9] mt-6 transition-colors duration-300">NEURAL<br>UI.</h3>
-                </div>
-                <div class="service-details-panel">
-                    <div class="mb-6 border-l-2 border-black pl-4">
-                        <h4 class="text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-1 opacity-40">Description</h4>
-                        <p class="text-xs md:text-sm font-bold uppercase leading-tight">Motion-heavy interfaces, WebGL experiences, and brand-first digital storytelling.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-1 opacity-40">Investment</h4>
-                        <div class="price-tag">$225+</div>
-                    </div>
-                </div>
-            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-zinc-900 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-600 text-center md:text-left">
+                <p>© 2026 AXIOFT STUDIO — ALL RIGHTS RESERVED</p>
+               <div class="flex gap-6 md:gap-8 items-center">
+    <a href="#" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-white transition-all duration-300 hover:scale-110" aria-label="X (Twitter)">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+    </a>
 
-            <div class="service-card min-h-[350px] md:min-h-[500px] border-r border-b border-white/10 p-6 md:p-12 group">
-                <div class="service-inner flex flex-col justify-start h-full">
-                    <span class="font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest transition-colors duration-300">Mod_03 // Logic</span>
-                    <h3 class="font-syne text-4xl md:text-6xl font-800 tracking-tighter uppercase leading-[0.9] mt-6 transition-colors duration-300">OMNI-ENGINE</h3>
-                </div>
-                <div class="service-details-panel">
-                    <div class="mb-6 border-l-2 border-black pl-4">
-                        <h4 class="text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-1 opacity-40">Description</h4>
-                        <p class="text-xs md:text-sm font-bold uppercase leading-tight">Comprehensive full-stack development featuring secure database integration and scalable backend architecture.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-1 opacity-40">Investment</h4>
-                        <div class="price-tag">$350+</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <a href="https://www.instagram.com/axioft.dev/" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-white transition-all duration-300 hover:scale-110" aria-label="Instagram">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+    </a>
 
-   <section id="projects" class="py-12 md:py-32 px-6 md:px-12 border-t border-white/10">
-    <div class="max-w-screen-2xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-20 gap-4">
-            <div>
-                <span class="text-[10px] uppercase tracking-[0.8em] text-zinc-600 mb-4 block">Archive_Index</span>
-                <h2 class="font-syne text-4xl md:text-6xl font-800 tracking-tighter uppercase leading-none">DEPLOYED_UNITS</h2>
-            </div>
-            <span class="text-xs font-mono text-zinc-500">[ TOTAL_COUNT: 03 ]</span>
-        </div>
-        <div id="projectsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-white/10"></div>
-    </div>
-</section>
-
-<section id="team" class="py-12 md:py-32 px-6 md:px-12 border-t border-white/10">
-    <div class="max-w-screen-2xl mx-auto">
-        <h2 class="font-syne text-4xl md:text-6xl font-800 mb-8 md:mb-20 tracking-tighter uppercase leading-none">THE_OPERATORS</h2>
-        <div id="teamContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-12"></div>
-    </div>
-</section>
-
-    <footer class="p-8 md:p-12 border-t border-white/10 flex flex-col items-center overflow-hidden">
-        <h2 class="font-syne text-[18vw] md:text-[15vw] font-800 leading-none opacity-5 select-none pointer-events-none">AXIOFT</h2>
-        <div class="w-full flex flex-col md:flex-row justify-between items-center gap-8 md:gap-10 mt-12">
-            <div class="text-[8px] md:text-[10px] font-bold tracking-[0.5em] text-zinc-600 uppercase text-center md:text-left">
-                Established / 2026 / Core Protocol
-            </div>
-            <button onclick="toggleModal()" class="text-xs font-bold uppercase tracking-widest border-b border-white pb-2 hover:text-zinc-400 transition-all">
-                Send Handshake Request
-            </button>
-            <div class="flex gap-8 text-[10px] font-bold uppercase text-zinc-500">
-                <a href="#" class="hover:text-white transition-colors">TWITTER</a>
-                <a href="#" class="hover:text-white transition-colors">GITHUB</a>
-            </div>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-white transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+    </a>
+</div>
         </div>
     </footer>
 
     <script>
-        function toggleModal() {
-            const modal = document.getElementById('enquireModal');
-            modal.classList.toggle('active');
-            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : 'auto';
+        function toggleForm() {
+            const ctaContent = document.getElementById('cta-content');
+            const contactForm = document.getElementById('contact-form');
+
+            if (contactForm.classList.contains('hidden')) {
+                ctaContent.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    ctaContent.classList.add('hidden');
+                    contactForm.classList.remove('hidden');
+                    setTimeout(() => {
+                        contactForm.classList.remove('opacity-0');
+                        contactForm.classList.add('opacity-100');
+                    }, 50);
+                }, 300);
+            } else {
+                contactForm.classList.remove('opacity-100');
+                contactForm.classList.add('opacity-0');
+                setTimeout(() => {
+                    contactForm.classList.add('hidden');
+                    ctaContent.classList.remove('hidden');
+                    setTimeout(() => {
+                        ctaContent.classList.remove('opacity-0', 'scale-95');
+                        ctaContent.classList.add('opacity-100', 'scale-100');
+                    }, 50);
+                }, 300);
+            }
         }
-
-       const projects = [
-    { 
-        title: 'D-SERVICES-VSNY', 
-        category: 'Interface Design', 
-        year: '2026', 
-        image: 'vsny.PNG',
-        url: 'https://digital-services-site-vsny.vercel.app/' 
-    },
-    { 
-        title: 'VOID_ENGINE', 
-        category: 'Core Dev', 
-        year: '2026', 
-        image: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=800',
-        url: 'https://yourlink2.com' 
-    },
-    { 
-        title: 'AXON_SHIELD', 
-        category: 'Security Protocol', 
-        year: '2026', 
-        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800',
-        url: 'https://yourlink3.com' 
-    }
-];
-
-document.getElementById('projectsContainer').innerHTML = projects.map(p => `
-    <div class="group border-r border-b border-white/10 p-6 md:p-8 hover:bg-white transition-all duration-700 relative min-h-[350px] md:min-h-[500px] flex flex-col justify-between">
-        <div>
-            <div class="flex justify-between items-start mb-6 md:mb-12">
-                <span class="text-[10px] font-mono text-zinc-500 group-hover:text-black transition-colors">${p.year}</span>
-                <span class="text-[10px] font-bold tracking-widest uppercase group-hover:text-black transition-colors">${p.category}</span>
-            </div>
-            <div class="mb-6 md:mb-8 overflow-hidden aspect-video grayscale group-hover:grayscale-0 transition-all duration-700">
-                <img src="${p.image}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000" loading="lazy" />
-            </div>
-            <h3 class="font-syne font-800 text-xl md:text-3xl tracking-tighter group-hover:text-black uppercase transition-colors">${p.title}</h3>
-        </div>
-
-        <div class="flex justify-end">
-            <a href="${p.url}" target="_blank" class="p-4 -mr-4 -mb-4 group/btn transition-transform hover:scale-110 active:scale-95">
-                <div class="w-10 h-10 md:w-12 md:h-12 border border-white/20 group-hover:border-black flex items-center justify-center transition-colors">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white group-hover:text-black transition-colors">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </div>
-            </a>
-        </div>
-    </div>
-`).join('');
-
-        const members = [
-            { name: 'LEVIN.C', role: 'ARCHITECT', image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=800' },
-            { name: 'KARTER.E', role: 'DESIGN PRINCIPAL', image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=800' },
-            { name: 'WONG.D', role: 'ENGINE_LEAD', image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=800' },
-        ];
-
-        document.getElementById('teamContainer').innerHTML = members.map(m => `
-            <div class="group brutalist-border p-4 bg-zinc-950/50">
-                <div class="overflow-hidden aspect-square grayscale mb-6 opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700">
-                    <img src="${m.image}" class="w-full h-full object-cover" loading="lazy" />
-                </div>
-                <div class="flex justify-between items-end">
-                    <h3 class="font-syne font-800 text-xl md:text-2xl tracking-tighter uppercase">${m.name}</h3>
-                    <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">${m.role}</span>
-                </div>
-            </div>
-        `).join('');
     </script>
 </body>
 </html>
