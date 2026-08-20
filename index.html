@@ -1,323 +1,3034 @@
+
+
+
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AXIOFT.DEV | Elite Software Engineering Studio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FIXED GOOGLE FONTS LINK FOR MOBILE AND DESKTOP -->
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --accent: #6366f1;
-        }
-        body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background-color: #050505;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-        .serif { font-family: 'Instrument Serif', serif; }
+  <meta charset="UTF-8" />
 
-        .mesh-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
-        }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+  <title>AXIOFT — Software Built for Modern Businesses</title>
 
-        .bento-card {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+  <meta
+    name="description"
+    content="AXIOFT designs and develops modern websites, mobile applications, UI/UX experiences and custom software for businesses and startups."
+  />
 
-        @media (min-width: 768px) {
-            .bento-card:hover {
-                background: rgba(255, 255, 255, 0.06);
-                border-color: rgba(255, 255, 255, 0.2);
-                transform: translateY(-8px) scale(1.01);
-            }
-        }
+  <meta name="theme-color" content="#050505" />
 
-        .text-gradient {
-            background: linear-gradient(to right, #fff, #a1a1aa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  <meta property="og:title" content="AXIOFT — Software Built for Modern Businesses" />
+  <meta
+    property="og:description"
+    content="We Architect Digital Empires."
+  />
+  <meta property="og:type" content="website" />
 
-        /* PREMIUM HERO SHIMMER ANIMATION */
-        @keyframes textShimmer {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
-        .animate-text-shimmer {
-            animation: textShimmer 6s ease infinite;
-        }
+  <style>
+    /* =========================================================
+       AXIOFT — SINGLE FILE WEBSITE
+       HTML + CSS + VANILLA JS
+    ========================================================= */
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .floating { animation: float 6s ease-in-out infinite; }
-    </style>
+    :root {
+      --bg: #050505;
+      --bg-soft: #0a0a0b;
+      --surface: #0d0d0f;
+      --surface-2: #111114;
+      --text: #f5f5f7;
+      --muted: #9a9aa3;
+      --muted-2: #6f7078;
+      --border: rgba(255, 255, 255, 0.09);
+      --border-hover: rgba(255, 255, 255, 0.18);
+      --white: #ffffff;
+      --radius: 24px;
+      --max: 1180px;
+      --ease: cubic-bezier(.22, .61, .36, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(255, 255, 255, 0.07),
+          transparent 34%
+        ),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ::selection {
+      background: #fff;
+      color: #000;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 130px 0;
+      position: relative;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 60px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #c8c8ce;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, .5);
+    }
+
+    .section-title {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      font-weight: 700;
+    }
+
+    .section-description {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 650px;
+      line-height: 1.75;
+    }
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    .navbar {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 0;
+      transition:
+        background .35s ease,
+        backdrop-filter .35s ease,
+        border-color .35s ease,
+        padding .35s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .navbar.scrolled {
+      background: rgba(5, 5, 5, .72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-color: var(--border);
+      padding: 13px 0;
+    }
+
+    .nav-inner {
+      width: min(1240px, calc(100% - 48px));
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo::after {
+      content: ".";
+      color: #777;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: #a9a9b0;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color .25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 17px;
+      background: #fff;
+      color: #000;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      transition:
+        transform .25s var(--ease),
+        box-shadow .25s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255,255,255,.12);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: #fff;
+      border-radius: 12px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      position: relative;
+      z-index: 1002;
+    }
+
+    .menu-btn span {
+      width: 18px;
+      height: 1.5px;
+      background: #fff;
+      transition: transform .3s ease;
+    }
+
+    .menu-btn.active span:first-child {
+      transform: translateY(3.25px) rotate(45deg);
+    }
+
+    .menu-btn.active span:last-child {
+      transform: translateY(-3.25px) rotate(-45deg);
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 160px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .45;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+      -webkit-mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(255,255,255,.07),
+        transparent 65%
+      );
+      top: -300px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      animation: floatGlow 8s ease-in-out infinite;
+    }
+
+    @keyframes floatGlow {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        transform: translateX(-50%) translateY(25px);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+    }
+
+    .hero-badge {
+      opacity: 0;
+      animation: heroUp .8s .1s var(--ease) forwards;
+    }
+
+    .hero h1 {
+      font-size: clamp(54px, 8vw, 105px);
+      line-height: .94;
+      letter-spacing: -.075em;
+      max-width: 1000px;
+      font-weight: 750;
+      opacity: 0;
+      animation: heroUp 1s .18s var(--ease) forwards;
+    }
+
+    .hero h1 span {
+      color: #74747d;
+    }
+
+    .hero-description {
+      max-width: 660px;
+      margin-top: 30px;
+      color: #9b9ba4;
+      font-size: clamp(16px, 2vw, 19px);
+      line-height: 1.7;
+      opacity: 0;
+      animation: heroUp .9s .3s var(--ease) forwards;
+    }
+
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 38px;
+      opacity: 0;
+      animation: heroUp .9s .4s var(--ease) forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 21px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 650;
+      transition:
+        transform .25s var(--ease),
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255,255,255,.12);
+    }
+
+    .btn-secondary {
+      color: #ddd;
+      background: rgba(255,255,255,.025);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.06);
+      border-color: var(--border-hover);
+    }
+
+    .arrow {
+      transition: transform .25s var(--ease);
+    }
+
+    .btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* =========================================================
+       HERO VISUAL
+    ========================================================= */
+
+    .hero-visual {
+      position: absolute;
+      right: -40px;
+      bottom: 7%;
+      width: 390px;
+      height: 290px;
+      opacity: .75;
+      pointer-events: none;
+      transform: perspective(900px) rotateY(-16deg) rotateX(7deg);
+      animation: visualFloat 7s ease-in-out infinite;
+    }
+
+    @keyframes visualFloat {
+      0%, 100% {
+        transform: perspective(900px) rotateY(-16deg) rotateX(7deg) translateY(0);
+      }
+      50% {
+        transform: perspective(900px) rotateY(-13deg) rotateX(8deg) translateY(-12px);
+      }
+    }
+
+    .visual-window {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.035);
+      border-radius: 22px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 30px 80px rgba(0,0,0,.4);
+      overflow: hidden;
+    }
+
+    .visual-top {
+      height: 42px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 15px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #666;
+    }
+
+    .visual-body {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 12px;
+    }
+
+    .visual-card {
+      min-height: 80px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255,255,255,.025);
+      padding: 14px;
+    }
+
+    .visual-card.large {
+      grid-column: 1 / -1;
+      height: 100px;
+    }
+
+    .fake-line {
+      width: 70%;
+      height: 6px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.2);
+      margin-bottom: 10px;
+    }
+
+    .fake-line.small {
+      width: 45%;
+      background: rgba(255,255,255,.09);
+    }
+
+    .fake-chart {
+      height: 55px;
+      display: flex;
+      align-items: end;
+      gap: 5px;
+    }
+
+    .fake-chart i {
+      display: block;
+      width: 9px;
+      border-radius: 5px 5px 0 0;
+      background: rgba(255,255,255,.25);
+    }
+
+    .fake-chart i:nth-child(1) { height: 25%; }
+    .fake-chart i:nth-child(2) { height: 48%; }
+    .fake-chart i:nth-child(3) { height: 35%; }
+    .fake-chart i:nth-child(4) { height: 70%; }
+    .fake-chart i:nth-child(5) { height: 55%; }
+    .fake-chart i:nth-child(6) { height: 90%; }
+
+    /* =========================================================
+       TRUST STRIP
+    ========================================================= */
+
+    .trust-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 27px 0;
+      background: rgba(255,255,255,.015);
+    }
+
+    .trust-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .trust-text {
+      font-size: 15px;
+      color: #c9c9ce;
+      font-weight: 600;
+    }
+
+    .trust-items {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .trust-items span {
+      color: #676870;
+      font-size: 13px;
+    }
+
+    /* =========================================================
+       SERVICES
+    ========================================================= */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 390px;
+      padding: 30px;
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.045),
+        rgba(255,255,255,.015)
+      );
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition:
+        transform .45s var(--ease),
+        border-color .35s ease,
+        background .35s ease;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      right: -100px;
+      top: -100px;
+      background: radial-gradient(
+        circle,
+        rgba(255,255,255,.08),
+        transparent 65%
+      );
+      transition: transform .5s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--border-hover);
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.065),
+        rgba(255,255,255,.02)
+      );
+    }
+
+    .service-card:hover::before {
+      transform: scale(1.3);
+    }
+
+    .service-number {
+      color: #64656c;
+      font-size: 12px;
+      letter-spacing: .12em;
+      font-weight: 700;
+    }
+
+    .service-icon {
+      width: 45px;
+      height: 45px;
+      margin: 35px 0 25px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      background: rgba(255,255,255,.035);
+      transition: transform .35s var(--ease);
+    }
+
+    .service-card:hover .service-icon {
+      transform: rotate(-5deg) scale(1.08);
+    }
+
+    .service-card h3 {
+      font-size: 27px;
+      letter-spacing: -.04em;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .service-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 22px;
+    }
+
+    .service-list span {
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: #8c8d95;
+      font-size: 11px;
+      background: rgba(255,255,255,.018);
+    }
+
+    .service-link {
+      position: absolute;
+      left: 30px;
+      bottom: 27px;
+      color: #ddd;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       WORK
+    ========================================================= */
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      transition:
+        transform .45s var(--ease),
+        border-color .35s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-hover);
+    }
+
+    .project-image {
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.1), transparent 35%),
+        linear-gradient(135deg, #151518, #080809);
+    }
+
+    .project-image::before {
+      content: "";
+      position: absolute;
+      width: 65%;
+      height: 70%;
+      left: 18%;
+      top: 15%;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 15px;
+      background: rgba(255,255,255,.035);
+      box-shadow: 0 30px 70px rgba(0,0,0,.4);
+      transform: rotate(-5deg);
+      transition: transform .5s var(--ease);
+    }
+
+    .project-card:hover .project-image::before {
+      transform: rotate(-2deg) scale(1.04);
+    }
+
+    .project-ui {
+      position: absolute;
+      width: 50%;
+      height: 48%;
+      left: 25%;
+      top: 26%;
+      z-index: 2;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px;
+      background: rgba(8,8,9,.85);
+      padding: 13px;
+      transition: transform .5s var(--ease);
+    }
+
+    .project-card:hover .project-ui {
+      transform: scale(1.06);
+    }
+
+    .project-ui .ui-line {
+      height: 5px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.13);
+      width: 70%;
+      margin-bottom: 9px;
+    }
+
+    .project-ui .ui-line.short {
+      width: 40%;
+    }
+
+    .ui-boxes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
+      margin-top: 15px;
+    }
+
+    .ui-box {
+      height: 50px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .project-info {
+      padding: 23px 24px 25px;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: #72737b;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+    }
+
+    .project-info h3 {
+      font-size: 25px;
+      letter-spacing: -.04em;
+    }
+
+    .project-info p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .project-arrow {
+      float: right;
+      margin-top: -25px;
+      font-size: 18px;
+      transition: transform .3s ease;
+    }
+
+    .project-card:hover .project-arrow {
+      transform: translate(4px, -4px);
+    }
+
+    .center-link {
+      text-align: center;
+      margin-top: 45px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #ddd;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .text-link:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* =========================================================
+       WHY
+    ========================================================= */
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .why-card {
+      padding: 28px;
+      min-height: 270px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255,255,255,.018);
+      transition: transform .4s var(--ease), border-color .3s ease;
+    }
+
+    .why-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+    }
+
+    .why-icon {
+      font-size: 21px;
+      margin-bottom: 70px;
+    }
+
+    .why-card h3 {
+      font-size: 18px;
+      letter-spacing: -.025em;
+      margin-bottom: 9px;
+    }
+
+    .why-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    /* =========================================================
+       PROCESS
+    ========================================================= */
+
+    .process {
+      border-top: 1px solid var(--border);
+    }
+
+    .process-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .process-item {
+      display: grid;
+      grid-template-columns: 100px 1fr 1.4fr;
+      align-items: center;
+      gap: 30px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding .35s var(--ease);
+    }
+
+    .process-item:hover {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .process-num {
+      color: #66676e;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+
+    .process-item h3 {
+      font-size: 24px;
+      letter-spacing: -.035em;
+    }
+
+    .process-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================================================
+       ABOUT
+    ========================================================= */
+
+    .about-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 75px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background:
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(255,255,255,.07),
+          transparent 35%
+        ),
+        rgba(255,255,255,.018);
+    }
+
+    .about-box h2 {
+      font-size: clamp(40px, 5vw, 65px);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .strategy {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .strategy span {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #d2d2d7;
+    }
+
+    /* =========================================================
+       CAPABILITIES
+    ========================================================= */
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .capability {
+      padding: 28px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .capability h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .capability p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    /* =========================================================
+       CTA
+    ========================================================= */
+
+    .big-cta {
+      padding: 120px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .big-cta::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 300px;
+      left: 50%;
+      top: 30%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(
+        ellipse,
+        rgba(255,255,255,.07),
+        transparent 65%
+      );
+      pointer-events: none;
+    }
+
+    .big-cta h2 {
+      position: relative;
+      font-size: clamp(50px, 9vw, 100px);
+      line-height: .95;
+      letter-spacing: -.075em;
+    }
+
+    .big-cta p {
+      position: relative;
+      max-width: 560px;
+      margin: 25px auto 32px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-title {
+      font-size: clamp(45px, 6vw, 75px);
+      line-height: .95;
+      letter-spacing: -.065em;
+    }
+
+    .contact-intro {
+      color: var(--muted);
+      margin-top: 20px;
+      line-height: 1.75;
+      max-width: 430px;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 30px;
+      color: #ddd;
+      border-bottom: 1px solid #444;
+      padding-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 15px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 12px;
+      color: #a1a1a8;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      color: #fff;
+      border-radius: 13px;
+      outline: none;
+      padding: 14px 15px;
+      transition:
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .field input,
+    .field select {
+      height: 50px;
+    }
+
+    .field textarea {
+      min-height: 145px;
+      resize: vertical;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #55565d;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(255,255,255,.35);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.035);
+    }
+
+    .field select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #777 50%),
+        linear-gradient(135deg, #777 50%, transparent 50%);
+      background-position:
+        calc(100% - 18px) 21px,
+        calc(100% - 13px) 21px;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    .field select option {
+      background: #111;
+      color: #fff;
+    }
+
+    .form-error {
+      display: none;
+      color: #ff8585;
+      font-size: 12px;
+      margin-top: -5px;
+    }
+
+    .form-error.show {
+      display: block;
+    }
+
+    .form-submit {
+      margin-top: 5px;
+    }
+
+    .confirmation {
+      display: none;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 15px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .confirmation.show {
+      display: block;
+      animation: fadeUp .5s var(--ease);
+    }
+
+    .confirmation strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .confirmation p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      padding: 45px 0 30px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 50px;
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 55px;
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-column strong {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #676870;
+      letter-spacing: .12em;
+      margin-bottom: 5px;
+    }
+
+    .footer-column a {
+      color: #a0a0a7;
+      font-size: 13px;
+      transition: color .2s ease;
+    }
+
+    .footer-column a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--border);
+      margin-top: 45px;
+      padding-top: 20px;
+      color: #5e5f66;
+      font-size: 11px;
+    }
+
+    /* =========================================================
+       FLOATING CTA
+    ========================================================= */
+
+    .floating-talk {
+      position: fixed;
+      z-index: 900;
+      right: 22px;
+      bottom: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 17px;
+      border-radius: 999px;
+      background: #fff;
+      color: #000;
+      font-size: 12px;
+      font-weight: 750;
+      box-shadow: 0 15px 45px rgba(0,0,0,.35);
+      transition: transform .25s var(--ease);
+    }
+
+    .floating-talk:hover {
+      transform: translateY(-4px);
+    }
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity .8s var(--ease),
+        transform .8s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       KEYFRAMES
+    ========================================================= */
+
+    @keyframes heroUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 1000px) {
+      .hero-visual {
+        opacity: .3;
+        right: -120px;
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .capability-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .about-box {
+        padding: 50px;
+        gap: 50px;
+      }
+    }
+
+    /* =========================================================
+       MOBILE NAV
+    ========================================================= */
+
+    @media (max-width: 800px) {
+      .container {
+        width: min(var(--max), calc(100% - 34px));
+      }
+
+      .nav-inner {
+        width: calc(100% - 34px);
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .menu-btn {
+        display: flex;
+      }
+
+      .navbar.menu-open {
+        background: rgba(5,5,5,.92);
+        backdrop-filter: blur(20px);
+      }
+
+      .navbar.menu-open .nav-links {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100svh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 25px;
+        padding: 34px;
+        background: rgba(5,5,5,.96);
+      }
+
+      .navbar.menu-open .nav-links a {
+        font-size: 35px;
+        color: #ddd;
+        letter-spacing: -.04em;
+      }
+
+      .navbar.menu-open .nav-links a:hover {
+        color: #fff;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 170px 0 110px;
+      }
+
+      .hero h1 {
+        font-size: clamp(48px, 14vw, 78px);
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .trust-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .trust-items {
+        justify-content: flex-start;
+      }
+
+      .services-grid,
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-box,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-box {
+        padding: 38px 25px;
+      }
+
+      .contact-grid {
+        gap: 45px;
+      }
+
+      .process-item {
+        grid-template-columns: 60px 1fr;
+        gap: 12px;
+      }
+
+      .process-item p {
+        grid-column: 2;
+      }
+
+      .capability-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 25px;
+      }
+    }
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 560px) {
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-title {
+        font-size: 44px;
+      }
+
+      .hero {
+        padding-top: 145px;
+      }
+
+      .hero h1 {
+        font-size: 51px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .trust-items {
+        gap: 10px 18px;
+      }
+
+      .service-card {
+        min-height: 420px;
+        padding: 24px;
+      }
+
+      .service-link {
+        left: 24px;
+      }
+
+      .project-image {
+        height: 230px;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-card {
+        min-height: 220px;
+      }
+
+      .why-icon {
+        margin-bottom: 45px;
+      }
+
+      .process-item h3 {
+        font-size: 20px;
+      }
+
+      .capability-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .big-cta {
+        padding: 90px 0;
+      }
+
+      .big-cta h2 {
+        font-size: 55px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .floating-talk {
+        right: 14px;
+        bottom: 14px;
+        padding: 12px 15px;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="mesh-bg"></div>
 
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 w-full z-[100] p-4 md:p-6">
-        <div class="max-w-6xl mx-auto glass rounded-2xl px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2 md:gap-3">
-                <div class="w-8 h-8 md:w-10 md:h-10 bg-indigo-600 rounded-lg md:rounded-xl flex items-center justify-center rotate-3 shadow-[0_0_20px_rgba(99,102,241,0.5)]">
-                    <div class="w-3 h-3 md:w-4 md:h-4 border-2 border-white"></div>
-                </div>
-                <span class="text-xl md:text-2xl font-extrabold tracking-tighter uppercase italic">Axioft<span class="text-indigo-500">.</span></span>
-            </div>
+  <!-- =======================================================
+       NAVIGATION
+  ======================================================= -->
 
-            <a href="mailto:axioft@gmail.com?subject=Project%20Inquiry%20-%20Axioft%20Studio" class="inline-flex items-center justify-center bg-white text-black px-4 md:px-8 py-2.5 md:py-3 rounded-xl text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:bg-indigo-500 hover:text-white transition-all active:scale-95">
-                Let's Connect
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <a href="#home" class="logo" aria-label="AXIOFT Home">
+        AXIOFT
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#contact" class="nav-cta">
+        Let's Talk <span>↗</span>
+      </a>
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero" id="home">
+
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="eyebrow hero-badge">
+            DIGITAL • SOFTWARE • INNOVATION
+          </div>
+
+          <h1>
+            We Architect
+            <span>Digital Empires..</span>
+          </h1>
+
+          <p class="hero-description">
+            We engineer what’s next.
+Axioft builds modern digital products and experiences that help businesses grow, evolve, and stay ahead.
+          </p>
+
+          <div class="hero-buttons">
+
+            <a href="#contact" class="btn btn-primary">
+              Start a Project
+              <span class="arrow">→</span>
             </a>
-        </div>
-    </nav>
 
-    <!-- UPGRADED PREMIUM HERO SECTION -->
-    <section class="relative pt-36 md:pt-64 pb-20 md:pb-36 px-4 md:px-6 overflow-hidden">
-        <!-- Subtle Premium Developer Grid Overlay -->
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none -z-10"></div>
-        
-        <div class="max-w-6xl mx-auto text-center relative z-10">
-            <!-- Dynamic Glowing Badge -->
-            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-indigo-500/20 bg-indigo-500/5 mb-8 md:mb-10 floating shadow-[0_0_30px_rgba(99,102,241,0.05)]">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500 shadow-[0_0_10px_#6366f1]"></span>
-                </span>
-                <span class="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-indigo-200/90">Engineering for the elite</span>
+            <a href="#services" class="btn btn-secondary">
+              View Services
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Abstract Product Interface -->
+
+      <div class="hero-visual" aria-hidden="true">
+
+        <div class="visual-window">
+
+          <div class="visual-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+          <div class="visual-body">
+
+            <div class="visual-card">
+              <div class="fake-line"></div>
+              <div class="fake-line small"></div>
             </div>
+
+            <div class="visual-card">
+              <div class="fake-line"></div>
+              <div class="fake-line small"></div>
+            </div>
+
+            <div class="visual-card large">
+              <div class="fake-chart">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TRUST STRIP
+    ====================================================== -->
+
+    <div class="trust-strip">
+
+      <div class="container trust-inner">
+
+        <div class="trust-text">
+          From idea to launch — we handle the technology.
+        </div>
+
+        <div class="trust-items">
+          <span>Web</span>
+          <span>Mobile</span>
+          <span>UI/UX</span>
+          <span>Custom Software</span>
+          <span>Digital Products</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SERVICES
+    ====================================================== -->
+
+    <section class="section" id="services">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="eyebrow">
+            Capabilities
+          </div>
+
+          <h2 class="section-title">
+            What we build.
+          </h2>
+
+          <p class="section-description">
             
-            <!-- Upgraded Master Headline with Shimmer Text -->
-            <h1 class="text-5xl sm:text-7xl md:text-[125px] font-extrabold tracking-tight leading-[0.9] mb-10 md:mb-14 text-gradient select-none">
-                We Architect <br class="hidden sm:block"/>
-                <span class="serif italic font-light text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-indigo-200 to-purple-400 animate-text-shimmer bg-[length:200%_auto]">Digital Empires.</span>
-            </h1>
-            
-            <!-- Refened Subtext -->
-            <p class="max-w-2xl mx-auto text-zinc-400 text-base md:text-lg leading-relaxed mb-12 md:mb-16 font-normal tracking-wide px-4 opacity-90">
-                A boutique development studio specializing in high-fidelity software architecture, bespoke AI integrations, and uncompromising digital experiences.
+From concept to creation, AXIOFT combines technology, design, and engineering to build digital products that move ideas forward.
+          </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+          <!-- Service 01 -->
+
+          <article class="service-card reveal">
+
+            <span class="service-number">01</span>
+
+            <div class="service-icon">◈</div>
+
+            <h3>Website Development</h3>
+
+            <p>
+              Fast, responsive and conversion-focused websites designed
+              around your business goals.
             </p>
 
-            <!-- Premium Scroll Indicator -->
-            <div class="hidden md:flex flex-col items-center gap-2 text-zinc-600 hover:text-zinc-400 transition-colors cursor-pointer w-fit mx-auto" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
-                <span class="text-[9px] font-bold tracking-[0.3em] uppercase">Explore Capabilities</span>
-                <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                </svg>
+            <div class="service-list">
+              <span>Business websites</span>
+              <span>Landing pages</span>
+              <span>Corporate websites</span>
+              <span>E-commerce</span>
+              <span>Web applications</span>
             </div>
+
+            <a href="#contact" class="service-link">
+              Explore Web Development →
+            </a>
+
+          </article>
+
+
+          <!-- Service 02 -->
+
+          <article class="service-card reveal">
+
+            <span class="service-number">02</span>
+
+            <div class="service-icon">⌁</div>
+
+            <h3>Mobile Applications</h3>
+
+            <p>
+              Modern mobile experiences built for iOS and Android users.
+            </p>
+
+            <div class="service-list">
+              <span>iOS</span>
+              <span>Android</span>
+              <span>Cross-platform</span>
+              <span>Customer apps</span>
+              <span>Business apps</span>
+            </div>
+
+            <a href="#contact" class="service-link">
+              Build an App →
+            </a>
+
+          </article>
+
+
+          <!-- Service 03 -->
+
+          <article class="service-card reveal">
+
+            <span class="service-number">03</span>
+
+            <div class="service-icon">✦</div>
+
+            <h3>UI/UX Design</h3>
+
+            <p>
+              Interfaces designed to make complex products feel simple,
+              intuitive and beautiful.
+            </p>
+
+            <div class="service-list">
+              <span>UI Design</span>
+              <span>UX Research</span>
+              <span>Wireframes</span>
+              <span>Prototypes</span>
+              <span>Design systems</span>
+            </div>
+
+            <a href="#contact" class="service-link">
+              Design Your Product →
+            </a>
+
+          </article>
+
+
+          <!-- Service 04 -->
+
+          <article class="service-card reveal">
+
+            <span class="service-number">04</span>
+
+            <div class="service-icon">⌘</div>
+
+            <h3>Custom Software</h3>
+
+            <p>
+              Purpose-built software that solves specific business problems
+              instead of forcing your business into generic tools.
+            </p>
+
+            <div class="service-list">
+              <span>Dashboards</span>
+              <span>Management systems</span>
+              <span>Portals</span>
+              <span>Automation</span>
+              <span>Internal tools</span>
+            </div>
+
+            <a href="#contact" class="service-link">
+              Build Custom Software →
+            </a>
+
+          </article>
+
+
+          <!-- Service 05 -->
+
+          <article class="service-card reveal">
+
+            <span class="service-number">05</span>
+
+            <div class="service-icon">◌</div>
+
+            <h3>SaaS & Digital Products</h3>
+
+            <p>
+              Turn ideas into scalable digital products with thoughtful UX
+              and reliable technology.
+            </p>
+
+            <div class="service-list">
+              <span>SaaS</span>
+              <span>MVP development</span>
+              <span>Product development</span>
+              <span>Web apps</span>
+            </div>
+
+            <a href="#contact" class="service-link">
+              Start a Product →
+            </a>
+
+          </article>
+
+
+          <!-- Service 06 -->
+
+          <article class="service-card reveal">
+
+            <span class="service-number">06</span>
+
+            <div class="service-icon">↻</div>
+
+            <h3>Software Maintenance</h3>
+
+            <p>
+              Keep your digital products secure, updated and continuously
+              improving after launch.
+            </p>
+
+            <div class="service-list">
+              <span>Bug fixes</span>
+              <span>Updates</span>
+              <span>Performance</span>
+              <span>Features</span>
+            </div>
+
+            <a href="#contact" class="service-link">
+              Improve Your Product →
+            </a>
+
+          </article>
+
         </div>
+
+      </div>
+
     </section>
 
-    <!-- SERVICES (BENTO GRID) -->
-    <section id="services" class="pb-20 md:pb-32 px-4 md:px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-12 md:mb-16 text-center md:text-left">
-                <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-400 mb-3 animate-pulse">Core Expertise</p>
-                <h2 class="text-3xl md:text-5xl font-bold tracking-tighter text-gradient">Our Capabilities<span class="text-indigo-500">.</span></h2>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 auto-rows-fr">
-                <!-- Card 1 -->
-                <div class="group md:col-span-2 md:row-span-2 bento-card glass p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] flex flex-col justify-end min-h-[350px] md:min-h-[400px] relative overflow-hidden">
-                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-all duration-700"></div>
-                    <div class="w-14 h-14 bg-indigo-500/10 border border-indigo-500/30 rounded-2xl flex items-center justify-center mb-6 w-fit shadow-[0_0_15px_rgba(99,102,241,0.1)] group-hover:border-indigo-500 group-hover:bg-indigo-500/20 transition-all duration-500">
-                        <svg class="w-7 h-7 text-indigo-400 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                        </svg>
-                    </div>
-                    <span class="text-indigo-500 text-[10px] font-mono font-bold tracking-widest mb-2 block">01 / TAILORED ARCHITECTURE</span>
-                    <h3 class="text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-tight group-hover:text-indigo-300 transition-colors duration-300">Custom Web Development</h3>
-                    <p class="text-zinc-500 text-sm md:text-base leading-relaxed">We build tailored websites and web applications designed to meet your unique business requirements, ensuring scalability, security, and high performance.</p>
-                </div>
 
-                <!-- Card 2 -->
-                <div class="group md:col-span-2 bento-card glass p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] flex flex-col justify-center min-h-[180px] relative overflow-hidden">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-white/5 rounded-full blur-xl group-hover:bg-indigo-500/10 transition-all duration-700"></div>
-                    <div class="flex items-start justify-between mb-4">
-                        <span class="text-zinc-600 text-xs font-mono font-bold group-hover:text-indigo-400 transition-colors">02</span>
-                        <div class="text-zinc-500 group-hover:text-indigo-400 group-hover:translate-x-[-4px] transition-all duration-500">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-2 tracking-tight">Responsive UI/UX Design</h3>
-                    <p class="text-zinc-500 text-sm leading-relaxed">We create modern, user-centric designs that deliver seamless experiences across desktops, tablets, and mobile devices.</p>
-                </div>
+    <!-- =====================================================
+         WHY AXIOFT
+    ====================================================== -->
 
-                <!-- Card 3 -->
-                <div class="group bento-card glass p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] flex flex-col justify-center min-h-[180px] relative overflow-hidden">
-                    <div class="flex items-start justify-between mb-4">
-                        <span class="text-zinc-600 text-xs font-mono font-bold group-hover:text-indigo-400 transition-colors">03</span>
-                        <div class="text-zinc-500 group-hover:text-indigo-400 group-hover:-translate-y-1 transition-all duration-500">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-2 tracking-tight">E-Commerce Solutions</h3>
-                    <p class="text-zinc-500 text-sm leading-relaxed">We develop powerful platforms with secure payments and optimized journeys to drive sales.</p>
-                </div>
+    <section class="section">
 
-                <!-- Card 4 -->
-                <div class="group bento-card glass p-8 md:p-10 rounded-[2rem] md:rounded-[3rem] bg-indigo-600/5 border-indigo-500/20 hover:border-indigo-500/50 flex flex-col justify-center min-h-[180px] relative overflow-hidden transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="flex items-start justify-between mb-4 relative z-10">
-                        <span class="text-indigo-400 text-xs font-mono font-bold">04 / RETAINER</span>
-                        <div class="text-indigo-400 group-hover:rotate-90 transition-transform duration-700 ease-out">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-2 tracking-tight text-indigo-400 relative z-10">Maintenance & Support</h3>
-                    <p class="text-zinc-400 group-hover:text-zinc-300 text-sm leading-relaxed relative z-10 transition-colors">We provide ongoing updates, performance optimization, and technical support to keep you running smoothly.</p>
-                </div>
-            </div>
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="eyebrow">
+            Why AXIOFT
+          </div>
+
+          <h2 class="section-title">
+            Built around what matters.
+          </h2>
+
         </div>
+
+
+        <div class="why-grid">
+
+          <article class="why-card reveal">
+            <div class="why-icon">◎</div>
+
+            <h3>Built Around Your Goals</h3>
+
+            <p>
+              We don't just build software. We understand what the product
+              needs to achieve.
+            </p>
+          </article>
+
+
+          <article class="why-card reveal">
+            <div class="why-icon">✦</div>
+
+            <h3>Design Meets Technology</h3>
+
+            <p>
+              Beautiful interfaces backed by thoughtful engineering.
+            </p>
+          </article>
+
+
+          <article class="why-card reveal">
+            <div class="why-icon">↗</div>
+
+            <h3>Built to Scale</h3>
+
+            <p>
+              Our solutions are designed with future growth in mind.
+            </p>
+          </article>
+
+
+          <article class="why-card reveal">
+            <div class="why-icon">◉</div>
+
+            <h3>Direct Collaboration</h3>
+
+            <p>
+              Work directly with the people building your product.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
     </section>
 
-    <!-- FOOTER WITH CTA -->
-    <footer class="pt-6 pb-12 px-4 md:px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="glass rounded-[2.5rem] md:rounded-[4rem] p-8 sm:p-12 md:p-24 text-center mb-16 md:mb-20 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-full bg-indigo-600/5 -z-10"></div>
-                
-                <div id="cta-content" class="transition-all duration-500 transform scale-100 opacity-100">
-                    <h2 class="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-8 md:mb-12 leading-tight">
-                        Let's build the <br/>
-                        <span class="serif italic font-light text-indigo-500">impossible.</span>
-                    </h2>
-                    <button onclick="toggleForm()" class="bg-white text-black px-8 md:px-12 py-4 md:py-6 rounded-xl md:rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest hover:scale-105 md:hover:scale-110 transition-transform active:scale-95 shadow-2xl">
-                        Initiate Contact
-                    </button>
-                </div>
 
-                <!-- CONTACT FORM -->
-                <div id="contact-form" class="hidden opacity-0 max-w-xl mx-auto text-left transition-all duration-700 ease-out">
-                    <div class="flex justify-between items-center mb-8 border-b border-zinc-800 pb-4">
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-400 mb-1">Brief Us</p>
-                            <h3 class="text-2xl font-bold tracking-tight">Project Inquiry</h3>
-                        </div>
-                        <button onclick="toggleForm()" class="text-zinc-500 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest p-2">
-                            ✕ Close
-                        </button>
-                    </div>
+    <!-- =====================================================
+         PROCESS
+    ====================================================== -->
 
-                    <form action="https://formspree.io/f/xbdqbbak" method="POST" class="space-y-6">
-                        <div>
-                            <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">Your Name</label>
-                            <input type="text" name="name" required placeholder="John Doe" class="w-full bg-white/5 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:bg-white/[0.08] transition-all" />
-                        </div>
+    <section class="section process" id="process">
 
-                        <div>
-                            <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">Email Address</label>
-                            <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-white/5 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500 focus:bg-white/[0.08] transition-all" />
-                        </div>
+      <div class="container">
 
-                        <div>
-                            <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">Project Type</label>
-                            <div class="relative">
-                                <select name="project_type" required class="w-full bg-white/5 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-indigo-500 focus:bg-white/[0.08] appearance-none transition-all cursor-pointer">
-                                    <option value="" disabled selected class="bg-zinc-950 text-zinc-600">Select a capability...</option>
-                                    <option value="custom-web" class="bg-zinc-950 text-white">Custom Web Development</option>
-                                    <option value="ui-ux" class="bg-zinc-950 text-white">Responsive UI/UX Design</option>
-                                    <option value="ecommerce" class="bg-zinc-950 text-white">E-Commerce Solutions</option>
-                                    <option value="maintenance" class="bg-zinc-950 text-white">Website Maintenance & Support</option>
-                                </select>
-                                <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-zinc-500">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                                </div>
-                            </div>
-                        </div>
+        <div class="section-header reveal">
 
-                        <div class="pt-2">
-                            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-6 rounded-xl text-xs uppercase tracking-widest transition-all active:scale-[0.98] shadow-lg shadow-indigo-600/20">
-                                Send Transmission
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+          <div class="eyebrow">
+            Our Process
+          </div>
 
-            <!-- LOWER FOOTER WITH UPDATED INSTAGRAM HOVER ICON -->
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-zinc-900 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-600 text-center md:text-left">
-                <p>© 2026 AXIOFT STUDIO — ALL RIGHTS RESERVED</p>
-                <div class="flex gap-6 md:gap-8 items-center">
-                    <!-- X (Twitter) Icon -->
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-white transition-all duration-300 hover:scale-110" aria-label="X (Twitter)">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </a>
-                    <!-- Instagram Icon (Replaced GitHub) -->
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-white transition-all duration-300 hover:scale-110" aria-label="Instagram">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <!-- LinkedIn Icon -->
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-white transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
+          <h2 class="section-title">
+            From idea to launch.
+          </h2>
+
+          <p class="section-description">
+            A clear process keeps projects focused, transparent and moving forward.
+          </p>
+
         </div>
-    </footer>
 
-    <!-- JAVASCRIPT FOR FORM TOGGLE -->
-    <script>
-        function toggleForm() {
-            const ctaContent = document.getElementById('cta-content');
-            const contactForm = document.getElementById('contact-form');
 
-            if (contactForm.classList.contains('hidden')) {
-                ctaContent.classList.add('opacity-0', 'scale-95');
-                setTimeout(() => {
-                    ctaContent.classList.add('hidden');
-                    contactForm.classList.remove('hidden');
-                    setTimeout(() => {
-                        contactForm.classList.remove('opacity-0');
-                        contactForm.classList.add('opacity-100');
-                    }, 50);
-                }, 300);
-            } else {
-                contactForm.classList.remove('opacity-100');
-                contactForm.classList.add('opacity-0');
-                setTimeout(() => {
-                    contactForm.classList.add('hidden');
-                    ctaContent.classList.remove('hidden');
-                    setTimeout(() => {
-                        ctaContent.classList.remove('opacity-0', 'scale-95');
-                        ctaContent.classList.add('opacity-100', 'scale-100');
-                    }, 50);
-                }, 300);
+        <div class="process-list">
+
+          <div class="process-item reveal">
+            <div class="process-num">01</div>
+            <h3>Discover</h3>
+            <p>
+              Understand your business, audience and goals.
+            </p>
+          </div>
+
+
+          <div class="process-item reveal">
+            <div class="process-num">02</div>
+            <h3>Plan</h3>
+            <p>
+              Define the product, features and technology.
+            </p>
+          </div>
+
+
+          <div class="process-item reveal">
+            <div class="process-num">03</div>
+            <h3>Design</h3>
+            <p>
+              Create the user experience and visual system.
+            </p>
+          </div>
+
+
+          <div class="process-item reveal">
+            <div class="process-num">04</div>
+            <h3>Build</h3>
+            <p>
+              Develop the product with clean, scalable technology.
+            </p>
+          </div>
+
+
+          <div class="process-item reveal">
+            <div class="process-num">05</div>
+            <h3>Launch</h3>
+            <p>
+              Test, deploy and prepare the product for real users.
+            </p>
+          </div>
+
+
+          <div class="process-item reveal">
+            <div class="process-num">06</div>
+            <h3>Grow</h3>
+            <p>
+              Continue improving the product based on real-world feedback.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section class="section" id="about">
+
+      <div class="container">
+
+        <div class="about-box reveal">
+
+          <div>
+
+            <div class="eyebrow">
+              About AXIOFT
+            </div>
+
+            <h2>
+              Technology should make business simpler.
+            </h2>
+
+          </div>
+
+
+          <div class="about-copy">
+
+            <p>
+              AXIOFT is a software company focused on building modern digital
+              experiences for businesses, startups and ambitious ideas.
+            </p>
+
+            <p>
+              We combine strategy, design and technology to create software
+              that is useful, beautiful and built for growth.
+            </p>
+
+            <div class="strategy">
+              <span>Strategy</span>
+              <span>Design</span>
+              <span>Technology</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CAPABILITIES
+    ====================================================== -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="eyebrow">
+            Technology
+          </div>
+
+          <h2 class="section-title">
+            Built with modern technology.
+          </h2>
+
+        </div>
+
+
+        <div class="capability-grid">
+
+          <div class="capability reveal">
+            <h3>Web</h3>
+            <p>
+              Modern web applications and responsive websites.
+            </p>
+          </div>
+
+          <div class="capability reveal">
+            <h3>Mobile</h3>
+            <p>
+              iOS, Android and cross-platform applications.
+            </p>
+          </div>
+
+          <div class="capability reveal">
+            <h3>Design</h3>
+            <p>
+              UI/UX, prototypes and design systems.
+            </p>
+          </div>
+
+          <div class="capability reveal">
+            <h3>Backend</h3>
+            <p>
+              APIs, databases, authentication and business logic.
+            </p>
+          </div>
+
+          <div class="capability reveal">
+            <h3>Cloud</h3>
+            <p>
+              Deployment, hosting and scalable infrastructure.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LARGE CTA
+    ====================================================== -->
+
+    <section class="big-cta">
+
+      <div class="container">
+
+        <div class="eyebrow reveal">
+          Start Something
+        </div>
+
+        <h2 class="reveal">
+          Have an idea?
+        </h2>
+
+        <p class="reveal">
+          Tell us what you're building. We'll help you turn it into
+          a digital product.
+        </p>
+
+        <div class="hero-buttons reveal" style="justify-content:center;">
+
+          <a href="#contact" class="btn btn-primary">
+            Start a Project
+            <span class="arrow">→</span>
+          </a>
+
+          <a
+            href="mailto:axioft.dev@gmail.com"
+            class="btn btn-secondary"
+          >
+            Email AXIOFT
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <section class="section" id="contact">
+
+      <div class="container">
+
+        <div class="contact-grid">
+
+          <div class="reveal">
+
+            <div class="eyebrow">
+              Contact
+            </div>
+
+            <h2 class="contact-title">
+              Let's build something.
+            </h2>
+
+            <p class="contact-intro">
+              Tell us about your project, idea or business challenge.
+              We'll help you figure out the next step.
+            </p>
+
+            <a
+              class="contact-email"
+              href="mailto:axioft.dev@gmail.com"
+            >
+              axioft.dev@gmail.com
+            </a>
+
+          </div>
+
+
+          <div class="reveal">
+
+            <form action="https://formspree.io/f/xbdqbbak" class="contact-form" id="contactForm" novalidate>
+
+              <div class="form-row">
+
+                <div class="field">
+                  <label for="name">Name *</label>
+
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Your name"
+                    autocomplete="name"
+                  />
+                </div>
+
+
+                <div class="field">
+                  <label for="email">Email *</label>
+
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@company.com"
+                    autocomplete="email"
+                  />
+                </div>
+
+              </div>
+
+
+              <div class="form-row">
+
+                <div class="field">
+                  <label for="company">Company</label>
+
+                  <input
+                    id="company"
+                    name="company"
+                    type="text"
+                    placeholder="Company name"
+                    autocomplete="organization"
+                  />
+                </div>
+
+
+                <div class="field">
+
+                  <label for="service">Service *</label>
+
+                  <select id="service" name="service">
+
+                    <option value="">
+                      Select a service
+                    </option>
+
+                    <option>
+                      Website Development
+                    </option>
+
+                    <option>
+                      Mobile Application
+                    </option>
+
+                    <option>
+                      UI/UX Design
+                    </option>
+
+                    <option>
+                      Custom Software
+                    </option>
+
+                    <option>
+                      SaaS / Web Application
+                    </option>
+
+                    <option>
+                      Other
+                    </option>
+
+                  </select>
+
+                </div>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="budget">
+                  Budget
+                </label>
+
+                <select id="budget" name="budget">
+
+                  <option value="">
+                    Select budget
+                  </option>
+
+                  <option>
+                    Under $500
+                  </option>
+
+                  <option>
+                    $500 – $1,000
+                  </option>
+
+                  <option>
+                    $1,000 – $2,500
+                  </option>
+
+                  <option>
+                    $2,500 – $5,000
+                  </option>
+
+                  <option>
+                    $5,000+
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="details">
+                  Project Details *
+                </label>
+
+                <textarea
+                  id="details"
+                  name="details"
+                  placeholder="Tell us about your project..."
+                ></textarea>
+
+              </div>
+
+
+              <div
+                class="form-error"
+                id="formError"
+                role="alert"
+              ></div>
+
+
+              <button
+                type="submit"
+                class="btn btn-primary form-submit"
+              >
+                Send Project Request
+                <span class="arrow">→</span>
+              </button>
+
+            </form>
+
+
+            <div class="confirmation" id="confirmation">
+
+              <strong>
+                Your project details are ready to send.
+              </strong>
+
+              <p>
+                Your default email application will open with the
+                project information already prepared.
+              </p>
+
+              <button
+                class="btn btn-primary"
+                id="openEmail"
+                type="button"
+              >
+                Open Email →
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       FLOATING CONTACT
+  ======================================================== -->
+
+  <a
+    href="#contact"
+    class="floating-talk"
+    aria-label="Go to contact section"
+  >
+    Let's Talk ↗
+  </a>
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+
+          <a href="#home" class="logo">
+            AXIOFT
+          </a>
+
+          <p>
+            Software built for modern businesses.
+          </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+          <div class="footer-column">
+
+            <strong>Navigate</strong>
+
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#process">Process</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+
+          </div>
+
+
+          <div class="footer-column">
+
+            <strong>Contact</strong>
+
+            <a href="mailto:axioft.dev@gmail.com">
+              axioft.dev@gmail.com
+            </a>
+
+            <a
+              href="https://instagram.com/axio.ft"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram — @axio.ft
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © 2026 AXIOFT. All rights reserved.
+        </span>
+
+        <span>
+          Software built for modern businesses.
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+    /* =========================================================
+       NAVBAR SCROLL
+    ========================================================= */
+
+    const navbar = document.getElementById("navbar");
+
+    function handleNavbar() {
+      if (window.scrollY > 25) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    }
+
+    window.addEventListener("scroll", handleNavbar, {
+      passive: true
+    });
+
+    handleNavbar();
+
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    function closeMenu() {
+      menuBtn.classList.remove("active");
+      navbar.classList.remove("menu-open");
+      document.body.classList.remove("menu-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+    }
+
+    menuBtn.addEventListener("click", () => {
+
+      const isOpen = menuBtn.classList.toggle("active");
+
+      navbar.classList.toggle("menu-open", isOpen);
+      document.body.classList.toggle("menu-open", isOpen);
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+    });
+
+
+    navLinks.querySelectorAll("a").forEach(link => {
+
+      link.addEventListener("click", () => {
+        closeMenu();
+      });
+
+    });
+
+
+    /* =========================================================
+       ESCAPE MENU
+    ========================================================= */
+
+    document.addEventListener("keydown", event => {
+
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+
+    });
+
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const revealObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
             }
+
+          });
+
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -40px 0px"
         }
-    </script>
+      );
+
+
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+
+
+    /* =========================================================
+       CONTACT FORM
+    ========================================================= */
+
+    const form =
+      document.getElementById("contactForm");
+
+    const formError =
+      document.getElementById("formError");
+
+    const confirmation =
+      document.getElementById("confirmation");
+
+    const openEmail =
+      document.getElementById("openEmail");
+
+    let emailURL = "";
+
+
+    function showError(message) {
+
+      formError.textContent = message;
+
+      formError.classList.add("show");
+
+    }
+
+
+    function clearError() {
+
+      formError.textContent = "";
+
+      formError.classList.remove("show");
+
+    }
+
+
+    function isValidEmail(email) {
+
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    }
+
+
+    form.addEventListener("submit", event => {
+
+      event.preventDefault();
+
+      clearError();
+
+
+      const name =
+        document.getElementById("name").value.trim();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const company =
+        document.getElementById("company").value.trim();
+
+      const service =
+        document.getElementById("service").value;
+
+      const budget =
+        document.getElementById("budget").value;
+
+      const details =
+        document.getElementById("details").value.trim();
+
+
+      if (!name) {
+
+        showError("Please enter your name.");
+
+        document.getElementById("name").focus();
+
+        return;
+
+      }
+
+
+      if (!email || !isValidEmail(email)) {
+
+        showError("Please enter a valid email address.");
+
+        document.getElementById("email").focus();
+
+        return;
+
+      }
+
+
+      if (!service) {
+
+        showError("Please select a service.");
+
+        document.getElementById("service").focus();
+
+        return;
+
+      }
+
+
+      if (!details) {
+
+        showError("Please tell us about your project.");
+
+        document.getElementById("details").focus();
+
+        return;
+
+      }
+
+
+      const subject =
+        "New Project Inquiry — AXIOFT";
+
+
+      const body =
+`Hello AXIOFT,
+
+I would like to discuss a project.
+
+Name:
+${name}
+
+Email:
+${email}
+
+Company:
+${company || "Not provided"}
+
+Service:
+${service}
+
+Budget:
+${budget || "Not provided"}
+
+Project Details:
+${details}
+
+Best regards,
+${name}`;
+
+
+      emailURL =
+        "mailto:axioft.dev@gmail.com" +
+        "?subject=" +
+        encodeURIComponent(subject) +
+        "&body=" +
+        encodeURIComponent(body);
+
+
+      form.style.display = "none";
+
+      confirmation.classList.add("show");
+
+    });
+
+
+    /* =========================================================
+       OPEN EMAIL
+    ========================================================= */
+
+    openEmail.addEventListener("click", () => {
+
+      if (emailURL) {
+        window.location.href = emailURL;
+      }
+
+    });
+
+
+    /* =========================================================
+       SMOOTH ANCHOR FALLBACK
+    ========================================================= */
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+      link.addEventListener("click", event => {
+
+        const targetID =
+          link.getAttribute("href");
+
+        if (!targetID || targetID === "#") {
+          return;
+        }
+
+        const target =
+          document.querySelector(targetID);
+
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+
+        target.scrollIntoView({
+          behavior:
+            window.matchMedia(
+              "(prefers-reduced-motion: reduce)"
+            ).matches
+              ? "auto"
+              : "smooth",
+          block: "start"
+        });
+
+      });
+
+    });
+  </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 </html>
